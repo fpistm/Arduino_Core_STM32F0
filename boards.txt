@@ -1,25 +1,25 @@
 # See: http://code.google.com/p/arduino/wiki/Platforms
 
 ################################################################################
-# NUCLEO-L476RG board
+# NUCLEO-F091RC board
 
-NUCLEO-L476RG.name=NUCLEO-L476RG
+NUCLEO-F091RC.name=NUCLEO-F091RC
 
-NUCLEO-L476RG.vid.0=0x0483
-NUCLEO-L476RG.pid.0=0x374b
-NUCLEO-L476RG.node=NODE_L476RG
+NUCLEO-F091RC.vid.0=0x0483
+NUCLEO-F091RC.pid.0=0x374b
+NUCLEO-F091RC.node=NODE_F091RC
 
-NUCLEO-L476RG.upload.tool=nucleoFlasher
-NUCLEO-L476RG.upload.protocol=nucleoFlasher
-NUCLEO-L476RG.upload.maximum_size=1048576
-NUCLEO-L476RG.upload.maximum_data_size=131072
+NUCLEO-F091RC.upload.tool=nucleoFlasher
+NUCLEO-F091RC.upload.protocol=nucleoFlasher
+NUCLEO-F091RC.upload.maximum_size=262144
+NUCLEO-F091RC.upload.maximum_data_size=32768
 
-NUCLEO-L476RG.build.mcu=cortex-m4
-NUCLEO-L476RG.build.board=NUCLEO-L476RG
-NUCLEO-L476RG.build.core=arduino
-NUCLEO-L476RG.build.ldscript=linker_scripts/gcc/STM32L476RG_FLASH.ld
-NUCLEO-L476RG.build.variant=STM32L476RG-Nucleo
-NUCLEO-L476RG.build.variant_system_lib=libstm32l4_nucleo-l476rg_gcc_rel.a
-NUCLEO-L476RG.build.extra_flags=-mthumb -DSTM32L476xx
+NUCLEO-F091RC.build.mcu=cortex-m0
+NUCLEO-F091RC.build.board=NUCLEO-F091RC
+NUCLEO-F091RC.build.core=arduino
+NUCLEO-F091RC.build.ldscript=linker_scripts/gcc/STM32F091RC_FLASH.ld
+NUCLEO-F091RC.build.variant=STM32F091RC-Nucleo
+NUCLEO-F091RC.build.variant_system_lib=libstm32f0_nucleo-f091rc_gcc_rel.a
+NUCLEO-F091RC.build.extra_flags=-mthumb -DSTM32F091xC
 
 ################################################################################

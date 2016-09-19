@@ -1,15 +1,16 @@
-# STM32L4xx ARM Core and platform.
+
+# Nucleduino ARM Core and platform.
 # ------------------------------
 #
 # For more info:
 # https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
 
-name=STM32L4xx Boards
+name=STM32F0xx Boards
 version=1.0.0
 
 # STM compile variables
 # ----------------------
-compiler.libstm.c.flags="-I{build.system.path}/libstm32l4" "-I{build.system.path}/libstm32l4/include" "-I{build.system.path}/Drivers/STM32L4xx_HAL_Driver/Inc/" "-I{build.system.path}/Drivers/CMSIS/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/STM32L4xx/Include"
+compiler.libstm.c.flags="-I{build.system.path}/libstm32f0" "-I{build.system.path}/libstm32f0/include" "-I{build.system.path}/Drivers/STM32F0xx_HAL_Driver/Inc/" "-I{build.system.path}/Drivers/CMSIS/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/STM32F0xx/Include"
 
 compiler.warning_flags=-w
 compiler.warning_flags.none=-w
