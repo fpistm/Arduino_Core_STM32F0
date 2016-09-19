@@ -9,14 +9,8 @@
  vim: set ts=4:
  */
 
-#if ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#include "pins_arduino.h"
-#include "WConstants.h"
-#endif
 
+#include "Arduino.h"
 #include "CapacitiveSensor.h"
 
 // Constructor /////////////////////////////////////////////////////////////////
@@ -32,25 +26,18 @@ CapacitiveSensor::CapacitiveSensor(uint8_t sendPin, uint8_t receivePin)
 	CS_Timeout_Millis = (2000 * (float)loopTimingFactor * (float)F_CPU) / 16000000;
 	CS_AutocaL_Millis = 20000;
 
-	// Serial.print("timwOut =  ");
-	// Serial.println(CS_Timeout_Millis);
-
 	// get pin mapping and port for send Pin - from PinMode function in core
+	if ((sendPin >= MAX_DIGITAL_IOS) || (receivePin >= MAX_DIGITAL_IOS)) {
+	  error = -1;
+	  return;
+	}
+	
+	rPin = receivePin;
+	sPin = sendPin;
 
-#ifdef NUM_DIGITAL_PINS
-	if (sendPin >= NUM_DIGITAL_PINS) error = -1;
-	if (receivePin >= NUM_DIGITAL_PINS) error = -1;
-#endif
-
-	pinMode(sendPin, OUTPUT);						// sendpin to OUTPUT
-	pinMode(receivePin, INPUT);						// receivePin to INPUT
-	digitalWrite(sendPin, LOW);
-
-	sBit = PIN_TO_BITMASK(sendPin);					// get send pin's ports and bitmask
-	sReg = PIN_TO_BASEREG(sendPin);					// get pointer to output register
-
-	rBit = PIN_TO_BITMASK(receivePin);				// get receive pin's ports and bitmask
-	rReg = PIN_TO_BASEREG(receivePin);
+	pinMode(sPin, OUTPUT);						// sendpin to OUTPUT
+	pinMode(rPin, INPUT);						// receivePin to INPUT
+	digitalWrite(sPin, LOW);
 
 	// get pin mapping and port for receive Pin - from digital pin functions in Wiring.c
 	leastTotal = 0x0FFFFFFFL;   // input large value for autocalibrate begin
@@ -136,17 +123,17 @@ void CapacitiveSensor::set_CS_Timeout_Millis(unsigned long timeout_millis){
 
 int CapacitiveSensor::SenseOneCycle(void)
 {
-    noInterrupts();
-	DIRECT_WRITE_LOW(sReg, sBit);	// sendPin Register low
-	DIRECT_MODE_INPUT(rReg, rBit);	// receivePin to input (pullups are off)
-	DIRECT_MODE_OUTPUT(rReg, rBit); // receivePin to OUTPUT
-	DIRECT_WRITE_LOW(rReg, rBit);	// pin is now LOW AND OUTPUT
+  //noInterrupts();
+	digitalWrite(sPin, LOW);// sendPin Register low
+	pinMode(rPin, INPUT);// receivePin to input (pullups are off)
+	pinMode(rPin, OUTPUT);// receivePin to OUTPUT
+	digitalWrite(rPin, LOW);// pin is now LOW AND OUTPUT
 	delayMicroseconds(10);
-	DIRECT_MODE_INPUT(rReg, rBit);	// receivePin to input (pullups are off)
-	DIRECT_WRITE_HIGH(sReg, sBit);	// sendPin High
-    interrupts();
+	pinMode(rPin, INPUT);// receivePin to input (pullups are off)
+	digitalWrite(sPin, HIGH);// sendPin High
+  //interrupts();
 
-	while ( !DIRECT_READ(rReg, rBit) && (total < CS_Timeout_Millis) ) {  // while receive pin is LOW AND total is positive value
+	while ( !digitalRead(rPin) && (total < CS_Timeout_Millis) ) {  // while receive pin is LOW AND total is positive value
 		total++;
 	}
 	//Serial.print("SenseOneCycle(1): ");
@@ -157,24 +144,17 @@ int CapacitiveSensor::SenseOneCycle(void)
 	}
 
 	// set receive pin HIGH briefly to charge up fully - because the while loop above will exit when pin is ~ 2.5V
-    noInterrupts();
-	DIRECT_WRITE_HIGH(rReg, rBit);
-	DIRECT_MODE_OUTPUT(rReg, rBit);  // receivePin to OUTPUT - pin is now HIGH AND OUTPUT
-	DIRECT_WRITE_HIGH(rReg, rBit);
-	DIRECT_MODE_INPUT(rReg, rBit);	// receivePin to INPUT (pullup is off)
-	DIRECT_WRITE_LOW(sReg, sBit);	// sendPin LOW
-    interrupts();
+  //noInterrupts();
+  //pinMode(receivePin, INPUT_PULLUP);
+  pinMode(rPin, OUTPUT); // receivePin to OUTPUT - pin is now HIGH AND OUTPUT
+	digitalWrite(rPin, HIGH);
+	pinMode(rPin, INPUT);// receivePin to INPUT (pullup is off)
+	digitalWrite(sPin, LOW);// sendPin LOW
+  //interrupts();
 
-#ifdef FIVE_VOLT_TOLERANCE_WORKAROUND
-	DIRECT_MODE_OUTPUT(rReg, rBit);
-	DIRECT_WRITE_LOW(rReg, rBit);
-	delayMicroseconds(10);
-	DIRECT_MODE_INPUT(rReg, rBit);	// receivePin to INPUT (pullup is off)
-#else
-	while ( DIRECT_READ(rReg, rBit) && (total < CS_Timeout_Millis) ) {  // while receive pin is HIGH  AND total is less than timeout
+  while ( digitalRead(rPin) && (total < CS_Timeout_Millis) ) {  // while receive pin is HIGH  AND total is less than timeout
 		total++;
 	}
-#endif
 	//Serial.print("SenseOneCycle(2): ");
 	//Serial.println(total);
 
