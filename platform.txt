@@ -92,12 +92,17 @@ recipe.size.regex.eeprom=^(?:\.eeprom)\s+([0-9]+).*
 # Uploader tool
 # -------------------
 
-tools.nucleoFlasher.path={runtime.tools.nucleoFlasher.path}
-tools.nucleoFlasher.cmd.linux=nucleoFlasher
-tools.nucleoFlasher.cmd.windows=nucleoFlasher.bat
-tools.nucleoFlasher.cmd.macosx=nucleoFlasherMacOsX
+#Upload to Nucleo via mass storage
+tools.STM32Flasher.path={runtime.tools.STM32Flasher.path}/tools/win/nucleoFlasher
+tools.STM32Flasher.path.macosx={runtime.tools.STM32Flasher.path}/tools/macosx/nucleoFlasher
+tools.STM32Flasher.path.linux={runtime.tools.STM32Flasher.path}/tools/linux/nucleoFlasher
 
 
-tools.nucleoFlasher.upload.params.verbose=
-tools.nucleoFlasher.upload.params.quiet=
-tools.nucleoFlasher.upload.pattern="{path}/{cmd}" {upload.verbose} -I "{build.path}/{build.project_name}.bin" -O "{node}"
+tools.STM32Flasher.cmd.linux=nucleoFlasher
+tools.STM32Flasher.cmd.windows=nucleoFlasher.bat
+tools.STM32Flasher.cmd.macosx=nucleoFlasherMacOsX
+
+
+tools.STM32Flasher.upload.params.verbose=
+tools.STM32Flasher.upload.params.quiet=
+tools.STM32Flasher.upload.pattern="{path}/{cmd}" {upload.verbose} -I "{build.path}/{build.project_name}.bin" -O "{node}"

@@ -9,8 +9,8 @@ NUCLEO-F091RC.vid.0=0x0483
 NUCLEO-F091RC.pid.0=0x374b
 NUCLEO-F091RC.node=NODE_F091RC
 
-NUCLEO-F091RC.upload.tool=nucleoFlasher
-NUCLEO-F091RC.upload.protocol=nucleoFlasher
+NUCLEO-F091RC.upload.tool=STM32Flasher
+NUCLEO-F091RC.upload.protocol=STM32Flasher
 NUCLEO-F091RC.upload.maximum_size=262144
 NUCLEO-F091RC.upload.maximum_data_size=32768
 
