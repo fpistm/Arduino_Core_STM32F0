@@ -3,33 +3,33 @@
 menu.upload_method=Upload method
 
 ################################################################################
-# NUCLEO-F091RC board
+# NUCLEO_F091RC board
 
-NUCLEO-F091RC.name=NUCLEO-F091RC
+NUCLEO_F091RC.name=Nucleo F091RC
 
-NUCLEO-F091RC.vid.0=0x0483
-NUCLEO-F091RC.pid.0=0x374b
-NUCLEO-F091RC.node=NODE_F091RC
+NUCLEO_F091RC.vid.0=0x0483
+NUCLEO_F091RC.pid.0=0x374b
+NUCLEO_F091RC.node=NODE_F091RC
 
 # upload methods:
-NUCLEO-F091RC.upload.tool=nucleoFlasher
-NUCLEO-F091RC.upload.protocol=nucleoFlasher
-NUCLEO-F091RC.upload.maximum_size=262144
-NUCLEO-F091RC.upload.maximum_data_size=32768
+NUCLEO_F091RC.upload.tool=nucleoFlasher
+NUCLEO_F091RC.upload.protocol=nucleoFlasher
+NUCLEO_F091RC.upload.maximum_size=262144
+NUCLEO_F091RC.upload.maximum_data_size=32768
 
-NUCLEO-F091RC.build.mcu=cortex-m0
-NUCLEO-F091RC.build.board=NUCLEO-F091RC
-NUCLEO-F091RC.build.core=arduino
-NUCLEO-F091RC.build.ldscript=linker_scripts/gcc/STM32F091RC_FLASH.ld
-NUCLEO-F091RC.build.variant=STM32F091RC-Nucleo
-NUCLEO-F091RC.build.variant_system_lib=libstm32f0_nucleo-f091rc_gcc_rel.a
-NUCLEO-F091RC.build.extra_flags=-mthumb -DSTM32F091xC
+NUCLEO_F091RC.build.mcu=cortex-m0
+NUCLEO_F091RC.build.board=NUCLEO_F091RC
+NUCLEO_F091RC.build.core=arduino
+NUCLEO_F091RC.build.ldscript=linker_scripts/gcc/STM32F091RC_FLASH.ld
+NUCLEO_F091RC.build.variant=STM32F091RC_Nucleo
+NUCLEO_F091RC.build.variant_system_lib=libstm32f0_nucleo_f091rc_gcc_rel.a
+NUCLEO_F091RC.build.extra_flags=-mthumb -DSTM32F091xC
 
-NUCLEO-F091RC.menu.upload_method.MassStorageMethod=Mass Storage
-NUCLEO-F091RC.menu.upload_method.MassStorageMethod.upload.protocol=
-NUCLEO-F091RC.menu.upload_method.MassStorageMethod.upload.tool=nucleoFlasher
+NUCLEO_F091RC.menu.upload_method.MassStorageMethod=Mass Storage
+NUCLEO_F091RC.menu.upload_method.MassStorageMethod.upload.protocol=
+NUCLEO_F091RC.menu.upload_method.MassStorageMethod.upload.tool=nucleoFlasher
 
-NUCLEO-F091RC.menu.upload_method.STLinkMethod=STLink
-NUCLEO-F091RC.menu.upload_method.STLinkMethod.upload.protocol=STLink
-NUCLEO-F091RC.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+NUCLEO_F091RC.menu.upload_method.STLinkMethod=STLink
+NUCLEO_F091RC.menu.upload_method.STLinkMethod.upload.protocol=STLink
+NUCLEO_F091RC.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
 ################################################################################

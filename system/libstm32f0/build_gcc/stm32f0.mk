@@ -42,11 +42,11 @@ endif
 
 # Board options
 ifeq ($(CHIP), __NUCLEO_F091RC__)
-CHIP_NAME=nucleo-f091rc
+CHIP_NAME=nucleo_f091rc
 CHIP_SERIE=STM32F0xx
 CFLAGS +=-DSTM32F091xC -D__CORTEX_SC=0
 # Output directories
-OUTPUT_BIN = ../../../variants/STM32F091RC-Nucleo
+OUTPUT_BIN = ../../../variants/STM32F091RC_Nucleo
 #Startup file
 CHIP_STARTUP_FILE=startup_stm32f091xc.s
 else
