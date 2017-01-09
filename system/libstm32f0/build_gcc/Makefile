@@ -31,12 +31,12 @@ NUCLEO_F091RC:
 	@echo ------------------------------------------------------------------------
 	@echo --- Making $@
 	@echo ---
-	@$(MAKE) CHIP=__NUCLEO_F091RC__ $(SUBMAKE_OPTIONS) -f stm32f0.mk
+	@$(MAKE) CHIP=STM32F091xC CHIP_STARTUP_FILE=startup_stm32f091xc.s LIBNAME=libstm32f0 CHIP_NAME=nucleo_f091rc VARIANTS_PATH=../../../variants/STM32F091RC_Nucleo $(SUBMAKE_OPTIONS) -f stm32f0.mk
 	@echo ------------------------------------------------------------------------
 
 .PHONY: clean
 clean:
 	@echo ------------------------------------------------------------------------
 	@echo --- Cleaning lib release and debug
-	@$(MAKE) CHIP=__NUCLEO_F091RC__ $(SUBMAKE_OPTIONS) -f stm32f0.mk $@
+	@$(MAKE) CHIP=STM32F091xC CHIP_STARTUP_FILE=startup_stm32f091xc.s LIBNAME=libstm32f0 CHIP_NAME=nucleo_f091rc VARIANTS_PATH=../../../variants/STM32F091RC_Nucleo $(SUBMAKE_OPTIONS) -f stm32f0.mk $@
 	@echo ------------------------------------------------------------------------
