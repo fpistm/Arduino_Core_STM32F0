@@ -45,8 +45,9 @@ ifeq ($(CHIP), __NUCLEO_F091RC__)
 CHIP_NAME=nucleo_f091rc
 CHIP_SERIE=STM32F0xx
 CFLAGS +=-DSTM32F091xC -D__CORTEX_SC=0
+VARIANTS_PATH = ../../../variants/STM32F091RC_Nucleo
 # Output directories
-OUTPUT_BIN = ../../../variants/STM32F091RC_Nucleo
+OUTPUT_BIN = $(VARIANTS_PATH)
 #Startup file
 CHIP_STARTUP_FILE=startup_stm32f091xc.s
 else
@@ -84,6 +85,7 @@ INCLUDES += -I$(CMSIS_ARM_PATH)
 INCLUDES += -I$(CMSIS_ST_PATH)
 INCLUDES += -I$(CMSIS_CHIP_PATH)/Include
 INCLUDES += -I$(STARTUP_FILE_PATH)
+INCLUDES += -I$(VARIANTS_PATH)
 
 #-------------------------------------------------------------------------------
 ifdef DEBUG
