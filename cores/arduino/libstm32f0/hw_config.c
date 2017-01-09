@@ -92,8 +92,6 @@
   * @{
   */
 
-static void SystemClock_Config(void);
-
 /**
   * @}
   */
@@ -101,36 +99,6 @@ static void SystemClock_Config(void);
 /** @addtogroup STM32F0xx_System_Private_Functions
   * @{
   */
-/**
-  * @brief  System Clock Configuration
-  * @param  None
-  * @retval None
-  */
-  void SystemClock_Config(void)
-  {
-
-    RCC_OscInitTypeDef RCC_OscInitStruct;
-    RCC_ClkInitTypeDef RCC_ClkInitStruct;
-
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48;
-    RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-    HAL_RCC_OscConfig(&RCC_OscInitStruct);
-
-    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                                |RCC_CLOCKTYPE_PCLK1;
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI48;
-    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-    HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1);
-
-    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
-
-    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-
-    /* SysTick_IRQn interrupt configuration */
-    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-  }
 
 /**
   * @brief  This function performs the global init of the system (HAL, IOs...)
