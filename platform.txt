@@ -10,7 +10,7 @@ version=1.0.0
 
 # STM compile variables
 # ----------------------
-compiler.libstm.c.flags="-I{build.system.path}/libstm32f0" "-I{build.system.path}/libstm32f0/include" "-I{build.system.path}/Drivers/STM32F0xx_HAL_Driver/Inc/" "-I{build.system.path}/Drivers/CMSIS/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/STM32F0xx/Include"
+compiler.libstm.c.flags="-I{build.system.path}/libstm32f0" "-I{build.system.path}/libstm32f0/include" "-I{build.core.path}/libstm32f0" "-I{build.system.path}/Drivers/STM32F0xx_HAL_Driver/Inc/" "-I{build.system.path}/Drivers/CMSIS/Include/" "-I{build.system.path}/Drivers/CMSIS/Device/ST/STM32F0xx/Include"
 
 compiler.warning_flags=-w
 compiler.warning_flags.none=-w
